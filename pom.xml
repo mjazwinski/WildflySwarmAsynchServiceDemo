@@ -16,7 +16,7 @@
 		<failOnMissingWebXml>false</failOnMissingWebXml>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-	
+
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -40,24 +40,6 @@
 					<warName>swarm-rest</warName>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.wildfly.swarm</groupId>
-				<artifactId>wildfly-swarm-plugin</artifactId>
-				<version>${version.wildfly.swarm}</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>package</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<!-- <debug>9001</debug> -->
-					<properties>
-						<swarm.bind.address>127.0.0.1</swarm.bind.address>
-					</properties>
-				</configuration>
-			</plugin>
 		</plugins>
 	</build>
 
@@ -75,4 +57,32 @@
 			<artifactId>jaxrs-cdi</artifactId>
 		</dependency>
 	</dependencies>
+
+	<profiles>
+		<profile>
+			<id>swarm</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.wildfly.swarm</groupId>
+						<artifactId>wildfly-swarm-plugin</artifactId>
+						<version>${version.wildfly.swarm}</version>
+						<executions>
+							<execution>
+								<goals>
+									<goal>package</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<!-- <debug>9001</debug> -->
+							<properties>
+								<swarm.bind.address>127.0.0.1</swarm.bind.address>
+							</properties>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>
