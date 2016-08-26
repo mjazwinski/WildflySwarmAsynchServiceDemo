@@ -87,23 +87,14 @@
 		<profile>
 			<id>openshift</id>
 			<build>
+				<finalName>swarm-demo</finalName>
 				<plugins>
 					<plugin>
-						<groupId>org.wildfly.swarm</groupId>
-						<artifactId>wildfly-swarm-plugin</artifactId>
-						<version>${version.wildfly.swarm}</version>
-						<executions>
-							<execution>
-								<goals>
-									<goal>package</goal>
-								</goals>
-							</execution>
-						</executions>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-war-plugin</artifactId>
 						<configuration>
-							<!-- <debug>9001</debug> -->
-							<properties>
-								<swarm.bind.address>127.0.0.1</swarm.bind.address>
-							</properties>
+							<failOnMissingWebXml>false</failOnMissingWebXml>
+							<warName>swarm-rest</warName>
 						</configuration>
 					</plugin>
 				</plugins>
